@@ -1,4 +1,4 @@
-# Opor Front-end
+# Opor Front
 Front end for `opor` using `react`, `vite` and `typescript`.
 
 ## Environment Variables
