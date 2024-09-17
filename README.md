@@ -11,3 +11,6 @@ To regenerate graphql types use:
 ```bash
 npx graphql-codegen
 ```
+
+> [!NOTE]
+> This repo was originally apart of [the archived monorepo](https://github.com/arsmoriendy/opor)
