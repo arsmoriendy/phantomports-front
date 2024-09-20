@@ -9,6 +9,7 @@ import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { BadgeAlert, BadgeCheck, Loader } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 import { InlineCode } from "./typography";
+import { Separator } from "../ui/separator";
 
 export const client = new ApolloClient({
   uri: import.meta.env.VITE_GQL_SRV_URI,
@@ -98,7 +99,17 @@ const QueryResult = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & 
             <BadgeAlert className="w-4 h-4" />
             <AlertTitle>Port <b>{portNum}</b> is registered</AlertTitle>
             <AlertDescription>
-              Registration details listed in the table below.
+              <p>Registration details listed in the table below.</p>
+              {(data!.nextOpenPort || data!.prevOpenPort) &&
+                <>
+                  <Separator className="my-1.5 bg-destructive/20 dark:bg-primary/20" />
+                  Suggested open ports:
+                  {data!.nextOpenPort &&
+                    <InlineCode copy tooltip="Next port, click to copy">{data!.nextOpenPort}</InlineCode>}
+                  &nbsp;
+                  {data!.prevOpenPort &&
+                    <InlineCode copy tooltip="Previous port, click to copy">{data!.prevOpenPort}</InlineCode>}
+                </>}
             </AlertDescription>
           </Alert>
           <QueryTable data={data!} />
