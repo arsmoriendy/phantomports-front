@@ -49,6 +49,8 @@ const GET_PORTS = gql(/* GraphQL */ `
       description
     }
     lastChecked
+    nextOpenPort(portNumber: $portNum)
+    prevOpenPort(portNumber: $portNum)
   }
 `)
 

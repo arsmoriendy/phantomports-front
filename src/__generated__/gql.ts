@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query GET_PORTS($portNum: Int!){\n    ports(portNumber: $portNum) {\n      serviceName\n      transportProtocol\n      portNumber\n      description\n    }\n    lastChecked\n  }\n": types.Get_PortsDocument,
+    "\n  query GET_PORTS($portNum: Int!){\n    ports(portNumber: $portNum) {\n      serviceName\n      transportProtocol\n      portNumber\n      description\n    }\n    lastChecked\n    nextOpenPort(portNumber: $portNum)\n    prevOpenPort(portNumber: $portNum)\n  }\n": types.Get_PortsDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GET_PORTS($portNum: Int!){\n    ports(portNumber: $portNum) {\n      serviceName\n      transportProtocol\n      portNumber\n      description\n    }\n    lastChecked\n  }\n"): (typeof documents)["\n  query GET_PORTS($portNum: Int!){\n    ports(portNumber: $portNum) {\n      serviceName\n      transportProtocol\n      portNumber\n      description\n    }\n    lastChecked\n  }\n"];
+export function gql(source: "\n  query GET_PORTS($portNum: Int!){\n    ports(portNumber: $portNum) {\n      serviceName\n      transportProtocol\n      portNumber\n      description\n    }\n    lastChecked\n    nextOpenPort(portNumber: $portNum)\n    prevOpenPort(portNumber: $portNum)\n  }\n"): (typeof documents)["\n  query GET_PORTS($portNum: Int!){\n    ports(portNumber: $portNum) {\n      serviceName\n      transportProtocol\n      portNumber\n      description\n    }\n    lastChecked\n    nextOpenPort(portNumber: $portNum)\n    prevOpenPort(portNumber: $portNum)\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

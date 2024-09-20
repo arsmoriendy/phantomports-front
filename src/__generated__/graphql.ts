@@ -35,7 +35,14 @@ export type Port = {
 export type Query = {
   __typename?: 'Query';
   lastChecked: Scalars['Int']['output'];
+  nextOpenPort?: Maybe<Scalars['Int']['output']>;
   ports: Array<Port>;
+  prevOpenPort?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type QueryNextOpenPortArgs = {
+  portNumber: Scalars['Int']['input'];
 };
 
 
@@ -43,12 +50,17 @@ export type QueryPortsArgs = {
   portNumber?: InputMaybe<Scalars['Int']['input']>;
 };
 
+
+export type QueryPrevOpenPortArgs = {
+  portNumber: Scalars['Int']['input'];
+};
+
 export type Get_PortsQueryVariables = Exact<{
   portNum: Scalars['Int']['input'];
 }>;
 
 
-export type Get_PortsQuery = { __typename?: 'Query', lastChecked: number, ports: Array<{ __typename?: 'Port', serviceName?: string | null, transportProtocol?: string | null, portNumber: Array<number>, description?: string | null }> };
+export type Get_PortsQuery = { __typename?: 'Query', lastChecked: number, nextOpenPort?: number | null, prevOpenPort?: number | null, ports: Array<{ __typename?: 'Port', serviceName?: string | null, transportProtocol?: string | null, portNumber: Array<number>, description?: string | null }> };
 
 
-export const Get_PortsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_PORTS"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"portNum"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ports"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"portNumber"},"value":{"kind":"Variable","name":{"kind":"Name","value":"portNum"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"serviceName"}},{"kind":"Field","name":{"kind":"Name","value":"transportProtocol"}},{"kind":"Field","name":{"kind":"Name","value":"portNumber"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lastChecked"}}]}}]} as unknown as DocumentNode<Get_PortsQuery, Get_PortsQueryVariables>;
+export const Get_PortsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GET_PORTS"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"portNum"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ports"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"portNumber"},"value":{"kind":"Variable","name":{"kind":"Name","value":"portNum"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"serviceName"}},{"kind":"Field","name":{"kind":"Name","value":"transportProtocol"}},{"kind":"Field","name":{"kind":"Name","value":"portNumber"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"lastChecked"}},{"kind":"Field","name":{"kind":"Name","value":"nextOpenPort"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"portNumber"},"value":{"kind":"Variable","name":{"kind":"Name","value":"portNum"}}}]},{"kind":"Field","name":{"kind":"Name","value":"prevOpenPort"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"portNumber"},"value":{"kind":"Variable","name":{"kind":"Name","value":"portNum"}}}]}]}}]} as unknown as DocumentNode<Get_PortsQuery, Get_PortsQueryVariables>;
