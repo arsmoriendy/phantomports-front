@@ -13,7 +13,10 @@ import { Separator } from "../ui/separator";
 
 export const client = new ApolloClient({
   uri: import.meta.env.VITE_GQL_SRV_URI,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  headers: {
+    "Authorization": `Basic ${btoa(`:${import.meta.env.VITE_GQL_SRV_PASS}`)}`
+  }
 })
 
 export const QueryForm = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ ...props }, ref) => {
