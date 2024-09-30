@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: pages
+on:
+  schedule:
+    - 9 * * * *
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  refresh-front-uuid:
+    runs-on: ubuntu-latest
+    steps:
+      - id: curl-uuid
+        run: |
+          VITE_GQL_SRV_PASS="$(curl https://api.opor.dev/refresh-front-uuid \
+          -H "Authorization: Basic $(echo -n ":${{ secrets.REF_FRONT_UUID_PASS }}" | base64)")"
+          echo "VITE_GQL_SRV_PASS=$VITE_GQL_SRV_PASS" >> "$GITHUB_OUTPUT"
+    outputs:
+      VITE_GQL_SRV_PASS: ${{ steps.curl-uuid.outputs.VITE_GQL_SRV_PASS }}
+
+  build-deploy:
+    runs-on: ubuntu-latest
+    needs: refresh-front-uuid
+    env:
+      VITE_GQL_SRV_URL: https://api.opor.dev/query
+      VITE_GQL_SRV_PASS: ${{ needs.refresh-front-uuid.outputs.VITE_GQL_SRV_PASS }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm run build
+      - uses: actions/configure-github-pages
+      - uses: upload-github-pages-artifact
+        with:
+          path: ./dist
+      - uses: actions/deploy-pages@v4
