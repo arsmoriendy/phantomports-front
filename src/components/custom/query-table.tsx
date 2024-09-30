@@ -1,7 +1,6 @@
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Get_PortsQuery } from "@/__generated__/graphql";
-import { InlineCode } from "./typography";
 
 type QueryTableProps = HTMLAttributes<HTMLTableElement> & {
   data: Get_PortsQuery
