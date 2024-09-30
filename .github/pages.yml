@@ -5,6 +5,9 @@ on:
   schedule:
     - 9 * * * *
   workflow_dispatch:
+  push:
+    branches:
+      - master
 permissions:
   contents: read
   pages: write
