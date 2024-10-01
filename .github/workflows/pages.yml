@@ -18,7 +18,7 @@ jobs:
     steps:
       - id: curl-uuid
         run: |
-          AUTH_HDR="Authorization: Basic $(echo -n ':${{ secrets.REF_FRONT_UUID_PASS }}' | base64)"
+          AUTH_HDR="Authorization: Basic $(echo -n ':${{ secrets.REF_FRONT_UUID_PASS }}' | base64 -w0)"
           VITE_GQL_SRV_PASS="$(curl https://api.opor.dev/refresh-front-uuid -H "$AUTH_HDR")"
           echo "VITE_GQL_SRV_PASS=$VITE_GQL_SRV_PASS" >> "$GITHUB_OUTPUT"
     outputs:
