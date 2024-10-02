@@ -1,5 +1,5 @@
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Get_PortsQuery } from "@/__generated__/graphql";
 
 type QueryTableProps = HTMLAttributes<HTMLTableElement> & {
@@ -52,14 +52,7 @@ export const QueryTable = forwardRef<HTMLTableElement, QueryTableProps>(({ data,
       && <TableCell key={key}>{formattedValue}</TableCell>
   }
 
-  const d = new Date(data.lastChecked * 1000)
-  const dstr = `${d.getFullYear().toString().slice(-2)}/${d.getMonth()}/${d.getDate()}`
-  const tstr = `${d.getHours()}:${d.getMinutes()}`
-
   return <Table ref={ref} {...props}>
-    <TableCaption className="align-middle">
-      Last checked on <span className="font-mono font-semibold text-xs">{dstr}</span> at <span className="font-mono font-semibold text-xs">{tstr}</span>
-    </TableCaption>
     <TableHeader>
       <TableRow>{heads}</TableRow>
     </TableHeader>

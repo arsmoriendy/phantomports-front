@@ -79,6 +79,14 @@ const QueryResult = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & 
     </AlertDescription>
   </Alert>
 
+  let dstr = "", tstr = ""
+
+  if (data !== undefined) {
+    const d = new Date(data.lastChecked * 1000)
+    dstr = `${d.getFullYear().toString().slice(-2)}/${d.getMonth()}/${d.getDate()}`
+    tstr = `${d.getHours()}:${d.getMinutes()}`
+  }
+
   return loading ? <LoadingIndicator /> : error !== undefined ? <ErrorIndicator error={error} /> : <div ref={ref} {...props}>
     {
       ports?.length === 0 ? // Unregistered
@@ -118,5 +126,8 @@ const QueryResult = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & 
           <QueryTable data={data!} />
         </>
     }
+    <small className="text-sm text-muted-foreground block text-center mt-4">
+      Last checked on <span className="font-mono font-semibold text-xs">{dstr}</span> at <span className="font-mono font-semibold text-xs">{tstr}</span>
+    </small>
   </div>
 })
