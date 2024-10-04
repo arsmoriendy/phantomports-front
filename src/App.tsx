@@ -6,12 +6,12 @@ import { Footer } from './components/custom/footer'
 
 function App() {
   return (
-    <ThemeProvider storageKey='opor-theme'>
+    <ThemeProvider storageKey='phantomports-theme'>
       <Card className='border-0 w-[100vw] shadow-none lg:w-[768px] lg:border lg:shadow-sm'>
         <CardHeader className='flex flex-row justify-between space-y-0'>
           <div className='flex flex-col space-y-1.5'>
-            <CardTitle>Opor</CardTitle>
-            <CardDescription>Lookup open/unregistered ports</CardDescription>
+            <CardTitle>Phantom Ports</CardTitle>
+            <CardDescription>Lookup unregistered ports</CardDescription>
           </div>
           <ThemeSwitcher />
         </CardHeader>

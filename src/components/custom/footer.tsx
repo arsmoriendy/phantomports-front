@@ -15,7 +15,7 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(({ className, ...p
         <SocialBtn link="#" tooltip="Back to top">
           <ArrowUp className="h-4 w-4" />
         </SocialBtn>
-        <SocialBtn link="https://github.com/arsmoriendy/opor-front" tooltip="Star on Github">
+        <SocialBtn link="https://github.com/arsmoriendy/phantomports-front" tooltip="Star on Github">
           <GithubLogo className="h-4 w-4" />
         </SocialBtn>
         <SocialBtn link="https://ko-fi.com/arsmoriendy" tooltip="Buy me a coffee">

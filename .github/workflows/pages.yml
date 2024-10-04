@@ -21,7 +21,7 @@ jobs:
           REF_FRONT_UUID_PASS: ${{ secrets.REF_FRONT_UUID_PASS }}
         run: |
           AUTH_HDR="Authorization: Basic $(echo -n ":$REF_FRONT_UUID_PASS" | base64 -w0)"
-          VITE_GQL_SRV_PASS="$(curl https://api.opor.dev/refresh-front-uuid -H "$AUTH_HDR")"
+          VITE_GQL_SRV_PASS="$(curl https://api.phantomports.com/refresh-front-uuid -H "$AUTH_HDR")"
           echo "VITE_GQL_SRV_PASS=$VITE_GQL_SRV_PASS" >> "$GITHUB_OUTPUT"
     outputs:
       VITE_GQL_SRV_PASS: ${{ steps.curl-uuid.outputs.VITE_GQL_SRV_PASS }}
@@ -33,7 +33,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     env:
-      VITE_GQL_SRV_URI: https://api.opor.dev/query
+      VITE_GQL_SRV_URI: https://api.phantomports.com/query
       VITE_GQL_SRV_PASS: ${{ needs.refresh-front-uuid.outputs.VITE_GQL_SRV_PASS }}
     steps:
       - uses: actions/checkout@v4
