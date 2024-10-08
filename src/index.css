@@ -167,7 +167,7 @@
     --accent-foreground: var(--text);
 
     --destructive: 358 100% 31%;
-    --destructive-foreground: var(--background);
+    --destructive-foreground: var(--text);
 
     --border: var(--background-200);
     --input: var(--background-200);
@@ -182,8 +182,6 @@
     --secondary-foreground: var(--background);
 
     --accent-foreground: var(--background);
-
-    --destructive-foreground: var(--text);
   }
   /* } */
 
