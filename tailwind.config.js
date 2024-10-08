@@ -28,8 +28,8 @@ export default {
           foreground: 'hsl(var(--primary-foreground))'
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
+          DEFAULT: 'hsl(var(--background-200))',
+          foreground: 'hsl(var(--foreground))'
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
