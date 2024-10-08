@@ -98,7 +98,7 @@ const QueryResult = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & 
             </AlertTitle>
             <AlertDescription>
               If you want to register this port,
-              check out <a className="dark:text-blue-500" href="https://www.iana.org/protocols/apply">
+              check out <a href="https://www.iana.org/protocols/apply">
                 IANA's port registration forms
               </a>
             </AlertDescription>
