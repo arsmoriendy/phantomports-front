@@ -91,7 +91,7 @@ const QueryResult = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & 
     {
       ports?.length === 0 ? // Unregistered
         <>
-          <Alert variant={"success"}>
+          <Alert>
             <BadgeCheck className="w-4 h-4" />
             <AlertTitle>
               Port <b>{portNum}</b> is unregistered
