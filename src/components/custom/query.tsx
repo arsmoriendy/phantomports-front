@@ -83,8 +83,8 @@ const QueryResult = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & 
 
   if (data !== undefined) {
     const d = new Date(data.lastChecked * 1000)
-    dstr = `${d.getFullYear().toString().slice(-2)}/${d.getMonth()}/${d.getDate()}`
-    tstr = `${d.getHours()}:${d.getMinutes()}`
+    dstr = d.toLocaleDateString(undefined, { dateStyle: "medium" })
+    tstr = d.toLocaleTimeString(undefined, { timeStyle: "short" })
   }
 
   return loading ? <LoadingIndicator /> : error !== undefined ? <ErrorIndicator error={error} /> : <div ref={ref} {...props}>
