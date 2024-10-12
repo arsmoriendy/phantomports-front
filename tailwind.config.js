@@ -14,6 +14,7 @@ export default {
       },
       fontFamily: {
         heading: "Arima",
+        body: "Inter",
       },
       colors: {
         background: 'hsl(var(--background))',
