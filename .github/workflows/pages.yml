@@ -6,8 +6,8 @@ on:
     - cron: 9 * * * *
   workflow_dispatch:
   push:
-    branches:
-      - master
+    tags:
+      - current-page
 permissions:
   contents: read
   pages: write
