@@ -10,7 +10,7 @@ function App() {
       <Card className='border-0 w-[100vw] shadow-none lg:w-[768px] lg:border lg:shadow-sm'>
         <CardHeader className='flex flex-row justify-between space-y-0'>
           <div className='flex flex-col space-y-1.5'>
-            <CardTitle>Phantom Ports</CardTitle>
+            <CardTitle className='text-3xl font-heading'>Phantom Ports</CardTitle>
             <CardDescription>Lookup unregistered ports</CardDescription>
           </div>
           <ThemeSwitcher />
