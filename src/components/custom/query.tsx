@@ -31,6 +31,7 @@ export const QueryForm = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElemen
       <Input
         ref={input}
         type='number'
+        min={0}
         placeholder='Port number (E.g. 80)'
         onKeyUp={(e) => e.key === "Enter" && updatePortNum()}
         className="max-w-[17em]"
