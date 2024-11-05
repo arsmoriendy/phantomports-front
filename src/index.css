@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    /**
+  /**
    * Gruvbox theme made with realtimecolors
    * https://www.realtimecolors.com/?colors=1D2021-FBF1C7-8EC07C-B8BB26-FABD2F&fonts=Poppins-Poppins
    * {
@@ -186,7 +186,6 @@
     --accent-foreground: var(--background);
   }
   /* } */
-
 
   * {
     @apply border-border;

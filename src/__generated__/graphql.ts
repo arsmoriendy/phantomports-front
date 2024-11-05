@@ -47,6 +47,7 @@ export type QueryNextOpenPortArgs = {
 
 
 export type QueryPortsArgs = {
+  after?: InputMaybe<Scalars['Int']['input']>;
   portNumber?: InputMaybe<Scalars['Int']['input']>;
 };
 
