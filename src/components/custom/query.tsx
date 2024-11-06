@@ -8,13 +8,14 @@ import {
 import { FormEvent, forwardRef, HTMLAttributes, useState } from "react";
 import { gql } from "@/__generated__/gql";
 import { QueryTable } from "./query-table";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { Alert, AlertDescription, AlertProps, AlertTitle } from "../ui/alert";
 import { BadgeAlert, BadgeCheck, Loader } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 import { InlineCode } from "./typography";
 import { Separator } from "../ui/separator";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { cn } from "@/lib/utils";
 
 export const client = new ApolloClient({
   uri: import.meta.env.VITE_GQL_SRV_URI,
@@ -71,6 +72,31 @@ const GET_PORTS = gql(/* GraphQL */ `
   }
 `);
 
+const QueryResultAlert = forwardRef<HTMLDivElement, AlertProps>(
+  ({ className, ...props }, ref) => (
+    <Alert ref={ref} className={cn(className, "my-6")} {...props} />
+  ),
+);
+
+const ErrorIndicator = ({ error }: { error: ApolloError }) => (
+  <QueryResultAlert variant={"destructive"}>
+    <BadgeAlert className="h-4 w-4" />
+    <AlertTitle>
+      Error fetching <b>API</b>
+    </AlertTitle>
+    <AlertDescription>
+      Message: <InlineCode className="text-xs">{error.message}</InlineCode>
+    </AlertDescription>
+  </QueryResultAlert>
+);
+
+const LoadingIndicator = () => (
+  <Skeleton className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold mt-6">
+    <Loader className="animate-spin w-4 h-4 mr-1.5" />
+    loading...
+  </Skeleton>
+);
+
 const QueryResult = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement> & { portNum: number }
@@ -81,25 +107,6 @@ const QueryResult = forwardRef<
 
   // filter unnasigned ports
   const ports = data?.ports.filter((p) => p.description !== "Unassigned");
-
-  const LoadingIndicator = () => (
-    <Skeleton className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold mt-6">
-      <Loader className="animate-spin w-4 h-4 mr-1.5" />
-      loading...
-    </Skeleton>
-  );
-
-  const ErrorIndicator = ({ error }: { error: ApolloError }) => (
-    <Alert variant={"destructive"} className="mt-6">
-      <BadgeAlert className="h-4 w-4" />
-      <AlertTitle>
-        Error fetching <b>API</b>
-      </AlertTitle>
-      <AlertDescription>
-        Message: <InlineCode className="text-xs">{error.message}</InlineCode>
-      </AlertDescription>
-    </Alert>
-  );
 
   let dstr = "",
     tstr = "";
@@ -118,7 +125,7 @@ const QueryResult = forwardRef<
     <div ref={ref} {...props}>
       {ports?.length === 0 ? ( // Unregistered
         <>
-          <Alert>
+          <QueryResultAlert>
             <BadgeCheck className="w-4 h-4" />
             <AlertTitle>
               Port <b>{portNum}</b> is unregistered
@@ -129,12 +136,12 @@ const QueryResult = forwardRef<
                 IANA's port registration forms
               </a>
             </AlertDescription>
-          </Alert>
+          </QueryResultAlert>
         </>
       ) : (
         // Registered
         <>
-          <Alert variant={"destructive"}>
+          <QueryResultAlert variant={"destructive"}>
             <BadgeAlert className="w-4 h-4" />
             <AlertTitle>
               Port <b>{portNum}</b> is registered
@@ -159,7 +166,7 @@ const QueryResult = forwardRef<
                 </>
               )}
             </AlertDescription>
-          </Alert>
+          </QueryResultAlert>
           <QueryTable data={data!} />
         </>
       )}
