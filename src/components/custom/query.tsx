@@ -5,10 +5,7 @@ import {
   InMemoryCache,
   useQuery,
 } from "@apollo/client";
-import { forwardRef, HTMLAttributes, useRef, useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { FormEvent, forwardRef, HTMLAttributes, useState } from "react";
 import { gql } from "@/__generated__/gql";
 import { QueryTable } from "./query-table";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
@@ -16,6 +13,8 @@ import { BadgeAlert, BadgeCheck, Loader } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 import { InlineCode } from "./typography";
 import { Separator } from "../ui/separator";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 export const client = new ApolloClient({
   uri: import.meta.env.VITE_GQL_SRV_URI,
@@ -26,40 +25,34 @@ export const client = new ApolloClient({
 });
 
 export const QueryForm = forwardRef<
-  HTMLDivElement,
-  HTMLAttributes<HTMLDivElement>
+  HTMLFormElement,
+  HTMLAttributes<HTMLFormElement>
 >(({ ...props }, ref) => {
-  const [portNum, setPortNum] = useState<number>(NaN);
+  const [portStr, setPortStr] = useState("");
+  const [portNum, setPortNum] = useState<number | null>(null);
 
-  const input = useRef<HTMLInputElement>(null);
-
-  const updatePortNum = () => {
-    setPortNum(parseInt(input.current?.value ?? "NaN"));
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setPortNum(parseInt(portStr));
   };
 
   return (
     <ApolloProvider client={client}>
-      <div
-        ref={ref}
-        className={cn("flex space-x-1.5", props.className)}
-        {...props}
-      >
-        <Input
-          ref={input}
-          type="number"
-          min={0}
-          placeholder="Port number (E.g. 80)"
-          onKeyUp={(e) => e.key === "Enter" && updatePortNum()}
-          className="max-w-[17em]"
-        />
-        <Button onClick={updatePortNum}>Lookup</Button>
-      </div>
-
-      {!isNaN(portNum) && (
-        <>
-          <QueryResult portNum={portNum} className="mt-6" />
-        </>
-      )}
+      <form ref={ref} onSubmit={onSubmit} {...props}>
+        <InputOTP
+          pattern={REGEXP_ONLY_DIGITS}
+          value={portStr}
+          maxLength={portStr.length + 1}
+          onChange={(value) => setPortStr(value)}
+        >
+          <InputOTPGroup>
+            {[...portStr, ""].map((_, i) => (
+              <InputOTPSlot key={i} index={i} />
+            ))}
+          </InputOTPGroup>
+        </InputOTP>
+      </form>
+      {portNum !== null && <QueryResult portNum={portNum} />}
     </ApolloProvider>
   );
 });

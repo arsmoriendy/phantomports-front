@@ -55,6 +55,17 @@ export default {
           5: "hsl(var(--chart-5))",
         },
       },
+      // instructions from shadcn input otp {
+      keyframes: {
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
+      // }
     },
   },
   plugins: [require("tailwindcss-animate")],
