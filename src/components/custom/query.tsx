@@ -16,6 +16,7 @@ import { Separator } from "../ui/separator";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 export const client = new ApolloClient({
   uri: import.meta.env.VITE_GQL_SRV_URI,
@@ -41,17 +42,37 @@ export const QueryForm = forwardRef<
     <ApolloProvider client={client}>
       <form ref={ref} onSubmit={onSubmit} {...props}>
         <InputOTP
+          name="port"
           pattern={REGEXP_ONLY_DIGITS}
           value={portStr}
           maxLength={portStr.length + 1}
           onChange={(value) => setPortStr(value)}
         >
-          <InputOTPGroup>
-            {[...portStr, ""].map((_, i) => (
-              <InputOTPSlot key={i} index={i} />
-            ))}
-          </InputOTPGroup>
+          <div className="flex gap-6 items-center">
+            <div>
+              <label htmlFor="port">Port Number</label>
+              <label
+                className="block text-muted-foreground text-sm"
+                htmlFor="port"
+              >
+                Press enter to search
+              </label>
+            </div>
+            <InputOTPGroup>
+              {[...portStr, ""].map((_, i) => (
+                <InputOTPSlot key={i} index={i} />
+              ))}
+            </InputOTPGroup>
+          </div>
         </InputOTP>
+        <Button
+          className="mt-3"
+          type="submit"
+          size="sm"
+          disabled={portStr.length === 0}
+        >
+          Search
+        </Button>
       </form>
       {portNum !== null && <QueryResult portNum={portNum} />}
     </ApolloProvider>
