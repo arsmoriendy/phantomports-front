@@ -174,13 +174,16 @@ const QueryResult = forwardRef<
                   <Separator className="my-1.5 bg-destructive/20 dark:bg-primary/20" />
                   Suggested open ports:
                   {data!.nextOpenPort && (
-                    <InlineCode copy tooltip="Next port, click to copy">
+                    <InlineCode copy tooltip="Next open port, click to copy">
                       {data!.nextOpenPort}
                     </InlineCode>
                   )}
                   &nbsp;
                   {data!.prevOpenPort && (
-                    <InlineCode copy tooltip="Previous port, click to copy">
+                    <InlineCode
+                      copy
+                      tooltip="Previous open port, click to copy"
+                    >
                       {data!.prevOpenPort}
                     </InlineCode>
                   )}
