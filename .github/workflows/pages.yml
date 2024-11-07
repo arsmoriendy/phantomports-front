@@ -37,6 +37,8 @@ jobs:
       VITE_GQL_SRV_PASS: ${{ needs.refresh-front-uuid.outputs.VITE_GQL_SRV_PASS }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: "current-page"
       - uses: actions/setup-node@v4
       - run: npm i
       - run: npm run build
