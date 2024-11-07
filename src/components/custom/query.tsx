@@ -5,7 +5,14 @@ import {
   InMemoryCache,
   useQuery,
 } from "@apollo/client";
-import { FormEvent, forwardRef, HTMLAttributes, useState } from "react";
+import {
+  FormEvent,
+  forwardRef,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { gql } from "@/__generated__/gql";
 import { QueryTable } from "./query-table";
 import { Alert, AlertDescription, AlertProps, AlertTitle } from "../ui/alert";
@@ -33,6 +40,11 @@ export const QueryForm = forwardRef<
   const [portStr, setPortStr] = useState("");
   const [portNum, setPortNum] = useState<number | null>(null);
 
+  const input = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    input.current?.focus();
+  }, []);
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     setPortNum(parseInt(portStr));
@@ -42,6 +54,7 @@ export const QueryForm = forwardRef<
     <ApolloProvider client={client}>
       <form ref={ref} onSubmit={onSubmit} {...props}>
         <InputOTP
+          ref={input}
           name="port"
           pattern={REGEXP_ONLY_DIGITS}
           value={portStr}
