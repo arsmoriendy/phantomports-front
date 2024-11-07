@@ -41,8 +41,7 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(
           </div>
 
           <Separator className="my-3" />
-
-          <small className="text-center text-muted-foreground">
+          <small>
             Sourced from&nbsp;
             <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">
               IANA's Service Name and Transport Protocol Port Number Registry
