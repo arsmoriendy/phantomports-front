@@ -18,7 +18,7 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(
     return (
       <div
         ref={ref}
-        className={cn("flex justify-center bg-secondary w-full", className)}
+        className={cn("flex justify-center bg-muted w-full", className)}
         {...props}
       >
         <div className="w-full lg:w-[768px] p-6">
