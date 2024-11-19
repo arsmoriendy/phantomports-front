@@ -29,12 +29,12 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--background-200))",
-          foreground: "hsl(var(--foreground))",
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsla(var(--foreground)/50%)",
+          foreground: "hsla(var(--muted-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
