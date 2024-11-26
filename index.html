@@ -9,6 +9,25 @@
       content="Lookup unregistered ports. Updated periodically, using IANA's port registry"
     />
     <title>PhantomPorts - Lookup Unregistered Ports</title>
+    <script>
+      const localStorageKey = "phantomports-theme";
+      const htmlClasses = window.document.documentElement.classList;
+
+      const stripTheme = () => htmlClasses.remove("dark", "light");
+      const darken = () => htmlClasses.add("dark");
+      const lighten = () => htmlClasses.add("light");
+
+      function isSystemDark() {
+        const { matches } = window.matchMedia("(prefers-color-scheme:dark)");
+        return matches;
+      }
+
+      stripTheme();
+      const lsTheme = localStorage[localStorageKey];
+      if (lsTheme === "dark") darken();
+      else if (lsTheme === "light") lighten();
+      else if (isSystemDark()) darken();
+    </script>
   </head>
   <body class="font-body">
     <div
