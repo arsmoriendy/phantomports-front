@@ -58,7 +58,7 @@ export const QueryForm = forwardRef<
           name="port"
           pattern={REGEXP_ONLY_DIGITS}
           value={portStr}
-          maxLength={portStr.length + 1}
+          maxLength={10}
           onChange={(value) => setPortStr(value)}
         >
           <div className="flex gap-6 items-center">
