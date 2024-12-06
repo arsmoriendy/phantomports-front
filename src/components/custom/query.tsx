@@ -52,7 +52,7 @@ export const QueryForm = forwardRef<
     input.current?.focus();
 
     const urlPort = getURLport();
-    if (urlPort !== null) {
+    if (urlPort !== null && !/[^0-9]/.test(urlPort)) {
       setPortStr(urlPort);
       setPortNum(parseInt(urlPort));
     }
