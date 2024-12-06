@@ -40,6 +40,12 @@ function getURLport(): string | null {
   return pstring;
 }
 
+function setURLport(port: string) {
+  const url = new URL(document.URL);
+  url.searchParams.set("port", port);
+  history.pushState("", "", url);
+}
+
 export const QueryForm = forwardRef<
   HTMLFormElement,
   HTMLAttributes<HTMLFormElement>
@@ -61,6 +67,7 @@ export const QueryForm = forwardRef<
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     setPortNum(parseInt(portStr));
+    setURLport(portStr);
   };
 
   return (
