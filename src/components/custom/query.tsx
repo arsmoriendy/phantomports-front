@@ -33,6 +33,13 @@ export const client = new ApolloClient({
   },
 });
 
+function getURLport(): string | null {
+  const urlParams = new URLSearchParams(window.location.search);
+  const pstring = urlParams.get("port");
+
+  return pstring;
+}
+
 export const QueryForm = forwardRef<
   HTMLFormElement,
   HTMLAttributes<HTMLFormElement>
@@ -43,6 +50,12 @@ export const QueryForm = forwardRef<
   const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
     input.current?.focus();
+
+    const urlPort = getURLport();
+    if (urlPort !== null) {
+      setPortStr(urlPort);
+      setPortNum(parseInt(urlPort));
+    }
   }, []);
 
   const onSubmit = (e: FormEvent) => {
