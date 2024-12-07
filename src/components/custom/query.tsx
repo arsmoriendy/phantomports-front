@@ -76,6 +76,7 @@ export const QueryForm = forwardRef<
         <InputOTP
           ref={input}
           name="port"
+          type="search"
           pattern={REGEXP_ONLY_DIGITS}
           value={portStr}
           maxLength={10}
