@@ -16,7 +16,7 @@ import {
 import { gql } from "@/__generated__/gql";
 import { QueryTable } from "./query-table";
 import { Alert, AlertDescription, AlertProps, AlertTitle } from "../ui/alert";
-import { BadgeAlert, BadgeCheck, Loader } from "lucide-react";
+import { BadgeCheck, BadgeX, Loader } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 import { InlineCode } from "./typography";
 import { Separator } from "../ui/separator";
@@ -135,7 +135,7 @@ const QueryResultAlert = forwardRef<HTMLDivElement, AlertProps>(
 
 const ErrorIndicator = ({ error }: { error: ApolloError }) => (
   <QueryResultAlert variant={"destructive"}>
-    <BadgeAlert className="h-4 w-4" />
+    <BadgeX className="h-4 w-4" />
     <AlertTitle>
       Error fetching <b>API</b>
     </AlertTitle>
@@ -197,7 +197,7 @@ const QueryResult = forwardRef<
         // Registered
         <>
           <QueryResultAlert variant={"destructive"}>
-            <BadgeAlert className="w-4 h-4" />
+            <BadgeX className="w-4 h-4" />
             <AlertTitle>
               Port <b>{portNum}</b> is registered
             </AlertTitle>

@@ -24,6 +24,8 @@
     --accent-foreground: var(--background);
     --destructive: 358 100% 31%;
     --destructive-foreground: var(--foreground);
+    --warning: 19 97% 35%;
+    --warning-foreground: var(--foreground);
     --ring: var(--accent);
     --radius: 0.5rem;
   }

@@ -3,6 +3,8 @@ import { ThemeSwitcher } from "./components/custom/theme-switcher";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { QueryForm } from "./components/custom/query";
 import { Footer } from "./components/custom/footer";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { BadgeAlert } from "lucide-react";
 
 function App() {
   return (
@@ -21,6 +23,14 @@ function App() {
         </CardHeader>
         <CardContent>
           <QueryForm />
+          <Alert className="mt-6" variant="warning">
+            <BadgeAlert className="w-4 h-4" />
+            <AlertTitle>Deprecation notice</AlertTitle>
+            <AlertDescription>
+              This project has been migrated to{" "}
+              <a href="https://opor.top">opor.top</a>
+            </AlertDescription>
+          </Alert>
         </CardContent>
       </Card>
 
