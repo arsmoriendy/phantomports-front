@@ -2,8 +2,6 @@
 
 name: pages
 on:
-  schedule:
-    - cron: 9 * * * *
   workflow_dispatch:
   push:
     tags:
