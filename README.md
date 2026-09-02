@@ -1,5 +1,8 @@
 # PhantomPorts Front
 
+> [!warning]
+> This project has been migrated to [this repository](https://github.com/arsmoriendy/opor-next)
+
 Front end for PhantomPorts.com using `react`, `vite` and `typescript`.
 
 ## Environment Variables
